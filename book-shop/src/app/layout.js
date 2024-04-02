@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
+import { ToastContainer } from 'react-toastify';
+import { dbConnect } from "@/services/mongo";
 import "./globals.css";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -10,7 +11,8 @@ export const metadata = {
   description: "An Online Book Store",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  await dbConnect();
   return (
     <html lang="en">
       <body className={inter.className}>
